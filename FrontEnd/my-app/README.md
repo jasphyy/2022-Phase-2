@@ -10,6 +10,10 @@ Make sure that you are in the project directoy "my-app"
 
 Enters into the project directory
 
+Firstly, make sure to install react-scripts and save it to configuration: 
+
+### `npm i react-scripts --save`
+
 In the project directory, you can run:
 
 ### `npm start`
