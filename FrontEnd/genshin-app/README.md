@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## To access a list of Genshin characters to test visit the API link: 
 
-### 'api.genshin.dev/characters/'
+### `api.genshin.dev/characters/`
 
 ## Available Scripts
 
