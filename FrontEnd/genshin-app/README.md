@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-Make sure that you are in the project directoy "my-app"
+Make sure that you are in the project directoy "genshin-app"
 
 ### `cd my-app`
 
