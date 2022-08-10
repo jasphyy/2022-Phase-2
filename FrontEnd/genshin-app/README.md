@@ -2,7 +2,21 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## To access a list of Genshin characters to test visit the API link: 
+
+### 'api.genshin.dev/characters/'
+
 ## Available Scripts
+
+Make sure that you are in the project directoy "my-app"
+
+### `cd my-app`
+
+Enters into the project directory
+
+Firstly, make sure to install react-scripts and save it to configuration: 
+
+### `npm i react-scripts --save`
 
 In the project directory, you can run:
 
