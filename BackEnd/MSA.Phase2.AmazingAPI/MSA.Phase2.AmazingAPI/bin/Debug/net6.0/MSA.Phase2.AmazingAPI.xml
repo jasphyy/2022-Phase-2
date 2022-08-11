@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MSA.Phase2.AmazingAPI</name>
+    </assembly>
+    <members>
+        <member name="M:MSA.Phase2.AmazingApi.Controllers.DemonstrationController.GetSum(System.Int32,System.Int32)">
+            <summary>
+            Adds two numbers together
+            </summary>
+            <param name="left">The number on the left, which must be a positive integer</param>
+            <param name="right">The number on the right, which must be a positive integer</param>
+            <returns>The sum of the input numbers</returns>
+        </member>
+        <member name="M:MSA.Phase2.AmazingApi.Controllers.DemonstrationController.GetNumber">
+            <summary>
+            Generates a random number
+            </summary>
+            <returns>A random number</returns>
+        </member>
+        <member name="M:MSA.Phase2.AmazingApi.Controllers.DemonstrationController.DemonstratePost">
+            <summary>
+            Demonstrates posting action
+            </summary>
+            <returns>A 201 Created response</returns>
+        </member>
+        <member name="M:MSA.Phase2.AmazingApi.Controllers.DemonstrationController.DemonstratePut">
+            <summary>
+            Demonstrates put action
+            </summary>
+            <returns>A 201 Created Response></returns>
+        </member>
+        <member name="M:MSA.Phase2.AmazingApi.Controllers.DemonstrationController.DemonstrateDelete">
+            <summary>
+            Demonstrates a delete action
+            </summary>
+            <returns>A 204 No Content Response</returns>
+        </member>
+        <member name="T:MSA.Phase2.AmazingAPI.Controllers.WeatherForecastController">
+            <summary>
+            This is the weather forecast controller that comes as a default from the project template when creating
+            a new c# Web API application.
+            </summary>
+        </member>
+        <member name="M:MSA.Phase2.AmazingAPI.Controllers.WeatherForecastController.Get">
+            <summary>
+            This endpoint takes no arguments, and gives you the weather forecast
+            </summary>
+            <returns>A JSON object describing the weather forecast</returns>
+        </member>
+        <member name="M:RedditController.#ctor(System.Net.Http.IHttpClientFactory)">
+            <summary />
+        </member>
+        <member name="M:RedditController.GetRawRedditHotPosts">
+            <summary>
+            Gets the raw JSON for the hot feed in reddit
+            </summary>
+            <returns>A JSON object representing the hot feed in reddit</returns>
+        </member>
+    </members>
+</doc>
