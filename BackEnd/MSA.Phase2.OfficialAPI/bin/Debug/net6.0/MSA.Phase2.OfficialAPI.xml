@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MSA.Phase2.OfficialAPI</name>
+    </assembly>
+    <members>
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.AddMember(MSA.Phase2.OfficialAPI.Models.AddTeamMember)">
+            <summary>
+            "CREATE Operation" Add Genshin Impact characters to a team assigned to a player.
+            </summary>
+            <returns>a JSON object of the current Genshin Team entered.</returns>
+        </member>
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.GetCurrentTeam">
+            <summary>
+            "READ Operation" Retrieves current Genshin Impact Teams to given player.
+            </summary>
+            <returns>a JSON object of the current Genshin Team of the player with a generated Id</returns>
+        </member>
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.UpdateCurrentTeam(System.Guid,MSA.Phase2.OfficialAPI.Models.UpdateTeamMember)">
+            <summary>
+            "UPDATE Operation" Add Genshin Impact characters to a team assigned to a player.
+            </summary>
+            <returns>a JSON object of the updated Genshin Team entered.</returns>
+        </member>
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.DeleteTeam(System.Guid)">
+            <summary>
+            "DELETE Operation" Deletes Genshin Impact team
+            </summary>
+        </member>
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinDevController.GetGenshinCharacters">
+            <summary>
+            Retrieves the characters from the Genshin API
+            </summary>
+            <returns>A JSON object representing the genshin characters</returns>
+        </member>
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinDevController.GetGenshinCharacter(System.String)">
+            <summary>
+            Retrieves specific character from the Genshin API
+            </summary>
+            <param name="character">Name of the genshin character</param>
+            <returns>A JSON object of entered character</returns>
+        </member>
+    </members>
+</doc>
