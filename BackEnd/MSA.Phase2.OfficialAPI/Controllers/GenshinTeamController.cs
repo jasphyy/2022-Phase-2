@@ -1,6 +1,9 @@
 ﻿using MSA.Phase2.OfficialAPI.Data;
 using Microsoft.AspNetCore.Mvc;
 using MSA.Phase2.OfficialAPI.Models;
+using MSA.Phase2.OfficialAPI.Service;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace MSA.Phase2.OfficialAPI.Controllers
 {
@@ -9,64 +12,73 @@ namespace MSA.Phase2.OfficialAPI.Controllers
     public class GenshinTeamController : ControllerBase
     {
         private readonly TeamAPIDbContext dbContext;
-        public GenshinTeamController(TeamAPIDbContext dbContext)
+        private readonly IGenshinDevService _genshinService;
+        public GenshinTeamController(IGenshinDevService genshinService, TeamAPIDbContext dbContext)
         {
             this.dbContext = dbContext;
+            _genshinService = genshinService;
+
         }
 
         /// <summary>
-        /// "CREATE Operation" Add Genshin Impact characters to a team assigned to a player.
+        /// "CREATE Operation" Assigns a Genshin Impact character to a player.
         /// </summary>
-        /// <returns>a JSON object of the current Genshin Team entered.</returns>
+        /// <returns>a JSON object of the current Genshin party.</returns>
         [HttpPost]
-        public async Task<IActionResult> AddMember(AddTeamMember addMember)
+        public async Task<IActionResult> AddParty(AddPartyMember addMember)
         {
-            var member = new Team()
+            Character response = await _genshinService.GetGenshinCharacter(addMember.Name);
+          
+
+            var party = new Party()
             {
                 Id = Guid.NewGuid(),
                 FullName = addMember.FullName,
-                Member1 = addMember.Member1,
-                Member2 = addMember.Member2,
-                Member3 = addMember.Member3,
-                Member4 = addMember.Member4
-
+                Name = addMember.Name,
+                Description = response.Description,
+                Nation = response.Nation,
+                Vision = response.Vision,
+                Weapon = response.Weapon
             };
-            await dbContext.Team.AddAsync(member);
+            await dbContext.Party.AddAsync(party);
             await dbContext.SaveChangesAsync();
-            return Ok(member);
+            return Ok(party);
         }
 
         /// <summary>
-        /// "READ Operation" Retrieves current Genshin Impact Teams to given player.
+        /// "READ Operation" Retrieves current Genshin Impact characters and information assigned to the identified player.
         /// </summary>
-        /// <returns>a JSON object of the current Genshin Team of the player with a generated Id</returns>
+        /// <returns>a JSON object of the player's Genshin character and their information.</returns>
 
         [HttpGet]
-        public async Task<IActionResult> GetCurrentTeam()
+        public async Task<IActionResult> GetCurrentParty()
         {
-            return Ok(dbContext.Team.ToList());
+            return Ok(dbContext.Party.ToList());
         }
 
         /// <summary>
-        /// "UPDATE Operation" Add Genshin Impact characters to a team assigned to a player.
+        /// "UPDATE Operation" Change the player's name or their assigned character.
         /// </summary>
-        /// <returns>a JSON object of the updated Genshin Team entered.</returns>
+        /// <returns>a JSON object of the updated genshin character.</returns>
 
         [HttpPut]
         [Route("{id:guid}")]
-        public async Task<IActionResult> UpdateCurrentTeam([FromRoute] Guid id, UpdateTeamMember updateTeamMember )
+        public async Task<IActionResult> UpdateCurrentTeam([FromRoute] Guid id, UpdatePartyMember updateTeamMember )
         {
-            var team = await dbContext.Team.FindAsync(id);
-            if (team != null)
+            var party = await dbContext.Party.FindAsync(id);
+            Character response = await _genshinService.GetGenshinCharacter(updateTeamMember.Name);
+
+            if (party != null)
             {
-                team.FullName = updateTeamMember.FullName;
-                team.Member1 = updateTeamMember.Member1;
-                team.Member2 = updateTeamMember.Member2;
-                team.Member3 = updateTeamMember.Member3;
-                team.Member4 = updateTeamMember.Member4;
+                party.FullName = updateTeamMember.FullName;
+                party.Name = updateTeamMember.Name;
+                party.Vision = response.Vision;
+                party.Weapon = response.Weapon;
+                party.Nation = response.Nation;
+                party.Description = response.Description;
 
                 await dbContext.SaveChangesAsync();
-                return Ok(team);
+                return Ok(party);
             }
             return NotFound();
 
@@ -79,10 +91,10 @@ namespace MSA.Phase2.OfficialAPI.Controllers
         [Route("{id:guid}")]
         public async Task<IActionResult> DeleteTeam([FromRoute] Guid id)
         {
-            var team = await dbContext.Team.FindAsync(id);
-            if (team != null)
+            var party = await dbContext.Party.FindAsync(id);
+            if (party != null)
             {
-                dbContext.Remove(team);
+                dbContext.Remove(party);
 
                 await dbContext.SaveChangesAsync();
                 return Ok("Team was deleted");
@@ -90,7 +102,21 @@ namespace MSA.Phase2.OfficialAPI.Controllers
             return NotFound();
            
         }
-      
+
+        /// <summary>
+        /// "External API Call" Retrieves specific character from the Genshin API, retrieving their name, vision, weapon, nation and description
+        /// </summary>
+        /// <param name="character">Name of the genshin character</param>
+        /// <returns>A JSON object of the genshin character</returns>
+
+        [HttpGet]
+        [Route("character/{character}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<Character> GetGenshinCharacter(string character)
+        {
+            return await _genshinService.GetGenshinCharacter(character);
+        }
 
 
 

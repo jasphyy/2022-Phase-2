@@ -9,6 +9,6 @@ namespace MSA.Phase2.OfficialAPI.Data
         {
            
         }
-        public DbSet<Team> Team { get; set; }
+        public DbSet<Party> Party { get; set; }
     }
 }

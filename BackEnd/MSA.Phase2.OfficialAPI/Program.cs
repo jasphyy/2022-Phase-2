@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using MSA.Phase2.OfficialAPI;
 using MSA.Phase2.OfficialAPI.Data;
+using MSA.Phase2.OfficialAPI.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
 builder.Services.AddDbContext<TeamAPIDbContext>(options => options.UseInMemoryDatabase("TeamDb"));
 builder.Services.AddSwaggerDocument(options =>
 {
@@ -18,7 +22,7 @@ builder.Services.AddSwaggerDocument(options =>
 });
 
 //Genshin API as a client
-builder.Services.AddHttpClient("genshin", configureClient: client =>
+builder.Services.AddHttpClient<IGenshinDevService, GenshinDevService>(configureClient: client =>
 {
     client.BaseAddress = new Uri("https://api.genshin.dev/characters");
 });

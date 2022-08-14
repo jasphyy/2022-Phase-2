@@ -4,41 +4,35 @@
         <name>MSA.Phase2.OfficialAPI</name>
     </assembly>
     <members>
-        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.AddMember(MSA.Phase2.OfficialAPI.Models.AddTeamMember)">
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.AddParty(MSA.Phase2.OfficialAPI.Models.AddPartyMember)">
             <summary>
-            "CREATE Operation" Add Genshin Impact characters to a team assigned to a player.
+            "CREATE Operation" Assigns a Genshin Impact character to a player.
             </summary>
-            <returns>a JSON object of the current Genshin Team entered.</returns>
+            <returns>a JSON object of the current Genshin party.</returns>
         </member>
-        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.GetCurrentTeam">
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.GetCurrentParty">
             <summary>
-            "READ Operation" Retrieves current Genshin Impact Teams to given player.
+            "READ Operation" Retrieves current Genshin Impact characters and information assigned to the identified player.
             </summary>
-            <returns>a JSON object of the current Genshin Team of the player with a generated Id</returns>
+            <returns>a JSON object of the player's Genshin character and their information.</returns>
         </member>
-        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.UpdateCurrentTeam(System.Guid,MSA.Phase2.OfficialAPI.Models.UpdateTeamMember)">
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.UpdateCurrentTeam(System.Guid,MSA.Phase2.OfficialAPI.Models.UpdatePartyMember)">
             <summary>
-            "UPDATE Operation" Add Genshin Impact characters to a team assigned to a player.
+            "UPDATE Operation" Change the player's name or their assigned character.
             </summary>
-            <returns>a JSON object of the updated Genshin Team entered.</returns>
+            <returns>a JSON object of the updated genshin character.</returns>
         </member>
         <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.DeleteTeam(System.Guid)">
             <summary>
             "DELETE Operation" Deletes Genshin Impact team
             </summary>
         </member>
-        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinDevController.GetGenshinCharacters">
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.GetGenshinCharacter(System.String)">
             <summary>
-            Retrieves the characters from the Genshin API
-            </summary>
-            <returns>A JSON object representing the genshin characters</returns>
-        </member>
-        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinDevController.GetGenshinCharacter(System.String)">
-            <summary>
-            Retrieves specific character from the Genshin API
+            Retrieves specific character from the Genshin API, retrieving their name, vision, weapon, nation and description
             </summary>
             <param name="character">Name of the genshin character</param>
-            <returns>A JSON object of entered character</returns>
+            <returns>A JSON object of the genshin character</returns>
         </member>
     </members>
 </doc>
