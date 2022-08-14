@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MSA.Phase2.OfficialAPI</name>
+    </assembly>
+    <members>
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.AddParty(MSA.Phase2.OfficialAPI.Models.AddPartyMember)">
+            <summary>
+            "CREATE Operation" Assigns a Genshin Impact character to a player.
+            </summary>
+            <returns>a JSON object of the current Genshin party.</returns>
+        </member>
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.GetCurrentParty">
+            <summary>
+            "READ Operation" Retrieves current Genshin Impact characters and information assigned to the identified player.
+            </summary>
+            <returns>a JSON object of the player's Genshin character and their information.</returns>
+        </member>
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.UpdateCurrentTeam(System.Guid,MSA.Phase2.OfficialAPI.Models.UpdatePartyMember)">
+            <summary>
+            "UPDATE Operation" Change the player's name or their assigned character.
+            </summary>
+            <returns>a JSON object of the updated genshin character.</returns>
+        </member>
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.DeleteTeam(System.Guid)">
+            <summary>
+            "DELETE Operation" Deletes Genshin Impact team
+            </summary>
+        </member>
+        <member name="M:MSA.Phase2.OfficialAPI.Controllers.GenshinTeamController.GetGenshinCharacter(System.String)">
+            <summary>
+            Retrieves specific character from the Genshin API, retrieving their name, vision, weapon, nation and description
+            </summary>
+            <param name="character">Name of the genshin character</param>
+            <returns>A JSON object of the genshin character</returns>
+        </member>
+    </members>
+</doc>
